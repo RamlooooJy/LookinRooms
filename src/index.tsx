@@ -1,13 +1,7 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import {render} from 'react-dom';
+import './assets/index.scss';
+import App from "./widgets/Main/App";
 
 
-
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+render(<App/>, document.getElementById('root'));

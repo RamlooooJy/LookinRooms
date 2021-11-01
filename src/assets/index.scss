@@ -1,0 +1,24 @@
+/// flex
+.flex {
+  display: flex;
+}
+.flex-sc {
+  @extend .flex;
+  justify-content: start;
+  align-items: center;
+}
+.flex-cc {
+  @extend .flex;
+  justify-content: center;
+  align-items: center;
+}
+.flex-bc {
+  @extend .flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.flex-bstretch {
+  @extend .flex;
+  justify-content: space-between;
+  align-items: stretch;
+}

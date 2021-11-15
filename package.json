@@ -1,5 +1,8 @@
 {
-  "name": "react-typescript",
+  "name": "lookinrooms-tables",
+  "license": "readonly not for commercial. All rights reserved, steal will be pursuited",
+  "author": "Fedorchenko Nikita, nikita9972012@mail.ru",
+  "description": "The project for manage tables in the club zone. For workers only",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

@@ -2,7 +2,7 @@ import {FC, useState} from "react";
 import {Link} from "../Link/Link";
 import {defaultRoutes} from "../../router/defaultRoutes";
 import {useHistory} from "react-router-dom";
-import Button from "../Button";
+import Button from "../Button/Button";
 import React from "react";
 import { StyledNavigation } from "./styled";
 
@@ -20,12 +20,10 @@ const Navigation: FC = () => {
     return className
   }
   return <StyledNavigation>
-    <Button className='button'/>
-
     {
       defaultRoutes.map(item =>
         <Link key={item.name} path={item.path}>
-          <Button className={`${active(item.path)} flex-bstretch`}>
+          <Button toggled className={`${active(item.path)} flex-bstretch`}>
             {item.icon && <div className={`icon icon-${item.icon}`}/>}
             <span className="text">{item.name}</span>
             {item.navIcon && <div className={item.navIcon}/>}

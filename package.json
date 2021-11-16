@@ -1,5 +1,8 @@
 {
-  "name": "react-typescript",
+  "name": "lookinrooms-tables",
+  "license": "readonly not for commercial. All rights reserved, steal will be pursuited",
+  "author": "Fedorchenko Nikita, nikita9972012@mail.ru",
+  "description": "The project for manage tables in the club zone. For workers only",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -11,6 +14,7 @@
     "@types/node": "^12.20.5",
     "@types/react": "^17.0.3",
     "@types/react-dom": "^17.0.2",
+    "axios": "^0.24.0",
     "mobx": "^6.3.5",
     "mobx-react-lite": "^3.2.1",
     "react": "^17.0.1",
@@ -53,6 +57,7 @@
     "@types/react-router-dom": "^5.3.2",
     "@types/react-syntax-highlighter": "^13.5.2",
     "@types/styled-components": "^5.1.15",
+    "@types/uuid": "^8.3.1",
     "@typescript-eslint/eslint-plugin": "^5.1.0",
     "@typescript-eslint/parser": "^5.1.0",
     "eslint-config-prettier": "^8.3.0",

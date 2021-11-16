@@ -1,11 +1,11 @@
-import Home from "../views/Home";
-import Main from "../views/Main";
-import Vip from "../views/Vip";
+import Shater from "../views/Shater/Shater";
+import Main from "../views/Main/Main";
+import Vip from "../views/Vip/Vip";
 
 export const defaultRoutes = [
   {
     path: '/shater',
-    component: Home,
+    component: Shater,
     name: 'Шатер',
     icon: 'shater',
     navIcon: 'icon-right'

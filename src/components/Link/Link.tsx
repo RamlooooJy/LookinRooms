@@ -1,18 +1,24 @@
+import React from "react";
 import {FC} from "react";
 import {useHistory} from "react-router-dom";
 import {goTo} from "../../router/utils";
+import { StyledLink } from "./styled";
 
 interface LinkI {
-  path: string
+  path?: string
+  onClick?: (e:any)=>void
 }
 
-export const Link:FC<LinkI> = ({path, children})=>{
+export const Link:FC<LinkI> = ({path , onClick, children})=>{
   const history = useHistory()
   const redirect = (e: any)=> {
     e.preventDefault()
-    goTo(path, history)
+    onClick && onClick(e)
+    if (path) {
+      goTo(path || history.location.pathname, history)
+    }
   }
-  return <a href={`/#${path}`} onClick={redirect}>
+  return <StyledLink href={`/#${path || history.location.pathname}`} onClick={redirect}>
     {children}
-  </a>
+  </StyledLink>
 }

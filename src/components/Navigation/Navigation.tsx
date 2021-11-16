@@ -5,8 +5,9 @@ import {useHistory} from "react-router-dom";
 import Button from "../Button/Button";
 import React from "react";
 import { StyledNavigation } from "./styled";
+import {DefaultComponent} from "../../common/interfaces";
 
-const Navigation: FC = () => {
+const Navigation: FC<DefaultComponent> = (props) => {
   const history = useHistory()
   const [activeLink, setActiveLink] = useState(history.location.pathname)
   history.listen((location, action) => {
@@ -19,7 +20,7 @@ const Navigation: FC = () => {
     }
     return className
   }
-  return <StyledNavigation>
+  return <StyledNavigation {...props}>
     {
       defaultRoutes.map(item =>
         <Link key={item.name} path={item.path}>

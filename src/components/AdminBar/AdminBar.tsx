@@ -16,7 +16,6 @@ const AdminBar: FC = () => {
   }
   const toggleModalTEMP = () => {
     setModalActive(!modalActive)
-    console.log('toggle')
   }
   return (
     <StyledAdminBar>

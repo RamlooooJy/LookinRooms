@@ -9,16 +9,16 @@ export const StyledSidebar = styled.div`
   flex-grow: 1;
   max-width: 360px;
   min-width: 100px;
-  overflow: auto;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-  @media ${props => props.theme.media.phoneAndTablet} {
+  overflow: auto hidden; 
+  @media ${props => props.theme.mediaQueries.phoneAndTablet} {
     max-height: 100px;
     flex-direction: row;
     max-width: none;
   }
 `
 export const StyledControlsContainer = styled.div`
-  @media ${props => props.theme.media.phoneAndTablet} {
+  @media ${props => props.theme.mediaQueries.phoneAndTablet} {
     display: flex;
     flex-direction: row;
   }

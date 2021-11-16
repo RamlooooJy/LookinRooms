@@ -31,7 +31,7 @@ export const StyledModalContainer = styled.div`
   box-shadow: ${props => props.theme.shadows.primary};
 `
 export const StyledInputsContainer = styled.div`
-  
+  margin-top: 100px;
 `
 
 export const StyledControlsContainer = styled(Flex)`

@@ -1,6 +1,5 @@
 import {makeAutoObservable} from "mobx";
 import {UserStoreI} from "../../common/interfaces";
-import {getUserByName} from "../../queries/query";
 
 class Users {
   private users: UserStoreI | null = null
@@ -13,9 +12,9 @@ class Users {
   }
 
   * fetch(name: string = '') {
-    getUserByName(name).then((resolve)=>{
-      this.users = resolve
-    })
+    // getUserByName(name).then((resolve)=>{
+    //   this.users = resolve
+    // })
     yield true
   }
 }

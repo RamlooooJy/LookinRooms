@@ -1,7 +1,13 @@
-import Shater from "../views/Shater/Shater";
-import Main from "../views/Main/Main";
-import Vip from "../views/Vip/Vip";
+import React from "react";
 
+
+const Shater = React.lazy(() => import("../views/Shater/Shater"));
+const Main = React.lazy(() => import("../views/Main/Main"));
+const Vip = React.lazy(() => import("../views/Vip/Vip"));
+// const WithLoader:FC = observer(({children}) => {
+//   if(!tablesStore.data.Shater) return <Spinner></Spinner>
+//   return children
+// })
 export const defaultRoutes = [
   {
     path: '/shater',

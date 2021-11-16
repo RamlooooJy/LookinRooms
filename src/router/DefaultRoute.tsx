@@ -1,9 +1,9 @@
-import {FC} from "react";
-
+import {FC, LazyExoticComponent, Suspense} from "react";
 import {Route} from "react-router-dom";
+import Spinner from "../components/BackgroundSpinner/BackgroundSpinner";
 
 interface DefaultRouteI {
-  Component: FC,
+  Component: LazyExoticComponent<FC> | FC,
   path: string,
   props?: any,
   isDefault?: boolean
@@ -11,7 +11,9 @@ interface DefaultRouteI {
 
 const DefaultRoute: FC<DefaultRouteI> = ({Component, path, props, isDefault}) => {
   return <Route>
-    <Component {...props} />
+    <Suspense fallback={<Spinner/>}>
+      <Component {...props} />
+    </Suspense>
   </Route>
 }
 export default DefaultRoute

@@ -1,5 +1,16 @@
 import {FlexI} from "../Application/globalStyled";
 
+export interface DefaultComponent {
+  isCompact?: boolean
+  size?: number
+}
+
+/**
+ *
+ * Tables
+ *
+ * */
+export type ChairT = 'default' | 'more' | 'active'
 
 export type TableT = {
   id: number
@@ -16,6 +27,7 @@ export type TableT = {
   GuestsAmount: number
   AdditionalGuestAmount?: number
 }
+
 export interface TableComponentI {
   data: TableT
   // isModalActive: boolean
@@ -25,22 +37,20 @@ export interface TableComponentI {
   inline?: boolean
   reversedTable?: boolean
 }
-export interface TableWrapperI extends FlexI{
+
+export interface TableWrapperI extends FlexI {
   tables: TableT[]
   padding?: string
   space?: string
   reversedTables?: boolean
 }
 
-export type ChairT = 'default' | 'more' | 'active'
-
 /**
-*
-* USERS
+ *
+ * USERS DATA
  *
  *
-*
-* */
+ * */
 
 type UserT = {
   name: string,
@@ -49,3 +59,15 @@ type UserT = {
 }
 
 export type UserStoreI = UserT[]
+
+/**
+ *
+ * TABLE DATA
+ *
+ * */
+export type TableReason = 'ДР' | 'КОРПОРАТ' | 'Просрать бабки и подкатить к девочкам'
+
+export type TablesData = {
+
+}
+

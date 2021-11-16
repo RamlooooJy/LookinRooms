@@ -1,20 +1,20 @@
 import React, {FC} from "react";
-import { StyledViewWrapper } from "../commonStyled";
 import {TableT} from "../../common/interfaces";
 import TableWrapper from "../../components/TableWrapper/TableWrapper";
+import CommonWrapper from "../../components/CommonWrapper/CommonWrapper";
 
-const Main:FC = () => {
+const Main: FC = () => {
   // const tables: TableT[] = [
   //   {id: 12, number: 1, price: 15000, GuestsAmount: 5},
   //   {id: 13, number: 1, price: 15000, GuestsAmount: 5}
   // ]
   return (
-    <StyledViewWrapper>
+    <CommonWrapper>
       {/*<TableWrapper tables={tables} posX={0} posY={0}/>*/}
       {/*<TableWrapper direction={"row"} tables={tables} posX={0} posY={0}/>*/}
       {/*<TableWrapper direction={"row"} tables={tables} posX={300} posY={0}/>*/}
       {/*<TableWrapper tables={tables} posX={600} posY={0}/>*/}
-    </StyledViewWrapper>
+    </CommonWrapper>
   )
 }
 export default Main

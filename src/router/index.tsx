@@ -6,9 +6,9 @@ import TablesMap from "../views";
 
 const RouterView = () => {
   return <HashRouter>
-    <Sidebar />
+    <Sidebar/>
     <TablesMap>
-      <Routes />
+      <Routes/>
     </TablesMap>
   </HashRouter>
 }

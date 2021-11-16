@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import {Dimensions} from "../Application/globalStyled";
+import {tablesStore} from "../store/tables/tablesStore";
 
 export const useMounted = () => {
   const [height, setHeight] = useState('100vh')
@@ -13,8 +14,7 @@ export const useMounted = () => {
 
   useEffect(() => {
     updateHeight()
-
-
+    tablesStore.fetch()
     /**todo
      //loadDafaultStore
      //loadSomethinMore */

@@ -1,7 +1,6 @@
 import styled, {createGlobalStyle, css} from "styled-components";
 
 export const Global = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css?family=Averia+Sans+Libre:400,600,700,800,900&display=swap');
   html {
     min-height: -webkit-fill-available;
   }
@@ -10,11 +9,14 @@ export const Global = createGlobalStyle`
     overflow: hidden;
   }
   .application * {
+    font-family: 'Averia Sans Libre', sans-serif;
+
     outline: none;
     box-sizing: border-box;
-    font-family: 'Averia Sans Libre', sans-serif;
+    //font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    //'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    //sans-serif;
   }
-
   .application a {
     color: #61dafb;
     text-decoration: none;
@@ -22,17 +24,15 @@ export const Global = createGlobalStyle`
 `
 
 export const StyledApp = styled.div<{Hheight: string}>`
+  position: relative;
   overflow: auto;
   display: flex;
   flex-grow: 1;
   background-color: ${props => props.theme.colors.background};
   font-size: calc(10px + 2vmin);
   color: white;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-  sans-serif;
   height: ${props=>props.Hheight};
-  @media ${props => props.theme.media.phoneAndTablet} {
+  @media ${props => props.theme.mediaQueries.phoneAndTablet} {
     flex-direction: column-reverse;
   }
 `
@@ -42,6 +42,7 @@ export interface FlexI {
   justify?: 'space-between' | 'stretch' | 'center' | 'flex-end' | 'flex-start' | 'normal'
   align?: 'stretch' | 'center' | 'flex-end' | 'flex-start' | 'normal'
   grow?: 1 | 0
+  minHeight?: string
   margin?: string
   border?: string
   sizeY?: string
@@ -51,14 +52,15 @@ export interface FlexI {
 interface AbsoluteI {
   top: string
   left: string
+  transform?: string
   fixedBottom?: boolean
   fixedRight?: boolean
 }
-export const AbsoluteBorderDoors = styled.div.attrs({type: 'Absolute'})<AbsoluteI>`
+export const Absolute = styled.div.attrs({type: 'Absolute'})<AbsoluteI>`
   position: absolute;
   ${({fixedBottom, top}) => fixedBottom ? css`bottom: ${top}` : css`top: ${top}`};
   ${({fixedRight, left}) => fixedRight ? css`right: ${left}` : css`left: ${left}`};
-  transform: translate(0, -50%);
+  ${({transform}) => transform && css`transform: ${transform}`};
 `
 
 
@@ -73,6 +75,7 @@ export const Flex = styled.div.attrs({type: 'Flex'})<FlexI>`
   ${({border}) => border && css`border: ${border}`};
   ${({sizeY}) => sizeY && css`height: ${sizeY}`};
   ${({overflow}) => overflow && css`overflow: ${overflow}`};
+  ${({minHeight}) => minHeight && css`min-height: ${minHeight}`};
 `
 
 const tablet = 1200
@@ -114,11 +117,13 @@ export const GlobalTheme = {
     primary: '200ms ease-out',
     fast: '50ms ease-out'
   },
-  media: {
+  mediaQueries: {
     phone: `(max-width: ${Dimensions.phone}px)`,
     tablet: `(max-width: ${Dimensions.tablet}px) and (min-width: ${Dimensions.phone}px)`,
     pc: `(max-width: ${Dimensions.pc}px) and (min-width: ${Dimensions.tablet}px)`,
     fullHD: `(min-width: ${Dimensions.pc}px`,
-    phoneAndTablet: `(max-width: ${Dimensions.tablet}px)`
+    phoneAndTablet: `(max-width: ${Dimensions.tablet}px)`,
+    mouseScreen: `(pointer: fine)`,
+    touchScreen: `(pointer: coarse)`,
   }
 }

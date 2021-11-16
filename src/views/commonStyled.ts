@@ -1,6 +1,4 @@
 import styled from "styled-components";
-import {Flex} from "../Application/globalStyled";
-
 
 export const StyledTablesMap = styled.div.attrs({title: 'Tables Map'})`
   display: flex;
@@ -11,17 +9,10 @@ export const StyledTablesMap = styled.div.attrs({title: 'Tables Map'})`
   background: ${props => props.theme.colors.background};
   box-shadow: ${props => props.theme.shadows.primary};
   border-radius: 24px;
-`
-
-export const StyledViewWrapper = styled(Flex).attrs({title: 'Wrapper'})<{ scale?: number }>`
+  padding: 20px;
   position: relative;
-  flex-grow: 1;
-  background: ${({theme}) => theme.tableColors.tableColor};;
-  margin: 20px;
-  border: 10px solid ${({theme}) => theme.colors.gray};
-  border-radius: 16px;
-  box-shadow: ${({theme}) => theme.shadows.primary};
-  //min-width: 600px;
-  transform: scale(${({scale}) => scale});
-  transform-origin: top left;
+  @media ${props => props.theme.mediaQueries.phoneAndTablet} {
+    padding: 5px;
+    margin: 0;
+  }
 `

@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import RouterView from '../router';
-import {Global, GlobalTheme, StyledApp} from './globalStyled'
+import {Absolute, Global, GlobalTheme, StyledApp} from './globalStyled'
 import {ThemeProvider} from 'styled-components';
 import {useMounted} from '../hooks/useMounted';
-
+import ZoomController from '../components/ZoomController/ZoomController';
 
 
 const Application = () => {
@@ -18,6 +18,9 @@ const Application = () => {
         <Global/>
         <StyledApp Hheight={height} onTouchStart={onTouch} className='application'>
             <RouterView/>
+            <Absolute transform={'translateY(-50%)'} top={'50%'} left={0} fixedRight>
+                <ZoomController />
+            </Absolute>
         </StyledApp>
     </ThemeProvider>
 }

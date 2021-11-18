@@ -1,17 +1,19 @@
 import {FC} from "react";
 import Styled from "./styled";
-interface ButtonI {
+export interface ButtonI {
   margin?: string
   className?: string
   background?: string
   secondary?: boolean
   toggled?: boolean
-  onClick?: ()=>void
+  onClick?: (event: React.MouseEvent<HTMLElement>)=>void
   borderColor?: string
+  disabled?: boolean
+  type?: 'submit'
 }
 
 const Button:FC<ButtonI> = ({onClick, children, ...props})=>{
-  return <Styled onClick={onClick} {...props}>
+  return <Styled disabled={props.disabled} onClick={onClick} {...props}>
     {children}
   </Styled>
 }

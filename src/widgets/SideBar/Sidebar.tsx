@@ -4,15 +4,16 @@ import Navigation from "../../components/Navigation/Navigation";
 import DatePicker from "../../components/DatePicker";
 import {StyledControlsContainer, StyledSidebar} from "./styled";
 import AdminBar from "../../components/AdminBar/AdminBar";
-import {Dimensions, Flex} from "../../Application/globalStyled";
+import {Flex} from "../../Application/globalStyled";
 import {dimensions} from "../../store/dimension/dimensions";
 import {observer} from "mobx-react-lite";
+import {StaticDimensions} from "../../Application/globalValues";
 
 const Sidebar: FC = observer(() => {
-  const [size, isCompact] = [dimensions.width, dimensions.width < Dimensions.phoneAndTablet]
+  const [size, isCompact] = [dimensions.width, dimensions.width < StaticDimensions.phoneAndTablet]
   return <StyledSidebar className={'sidebar'}>
     <Flex direction={isCompact ? 'row' : 'column'}>
-      {size > Dimensions.phone && <Logo little={isCompact}/>}
+      {size > StaticDimensions.phone && <Logo little={isCompact}/>}
       <Navigation isCompact={isCompact} size={size}/>
     </Flex>
     <StyledControlsContainer>

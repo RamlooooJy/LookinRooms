@@ -27,12 +27,12 @@ const Table: FC<TableComponentI> = ({data, ...props}) => {
     return margin || '0'
   }
   const totalGuestAmmount = () => {
-    const tableSize = Number(data.GuestsAmount) + (Number(data.AdditionalGuestAmount) || 0)
+    const tableSize = data.TableInfo.TotalGuestWithAdditional
     return tableSize <= 4 ? 's1' : tableSize > 4 && tableSize <= 6 ? 's2' : 's3'
   }
   return (<>
       <StyledTable reversedTable={props.reversedTable} active={isActiveModal} tableNumber={data.TableNumber} onClick={onClick} margin={margin()}
-                   tableSize={totalGuestAmmount()}>
+                   tableSize={totalGuestAmmount()} frizzed={data.Locked} reserved={data.Reserved}>
         <Chairs data={data} />
       </StyledTable>
       {isActiveModal && <TableModal isActive={isActiveModal} toggleModal={toggleModal}/>}

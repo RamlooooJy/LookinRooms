@@ -1,6 +1,4 @@
 import React, {FC} from "react";
-import {TableT} from "../../common/interfaces";
-import TableWrapper from "../../components/TableWrapper/TableWrapper";
 import CommonWrapper from "../../components/CommonWrapper/CommonWrapper";
 
 const Main: FC = () => {

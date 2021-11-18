@@ -1,7 +1,7 @@
-import React, {createRef, useState} from 'react';
+import React, {createRef} from 'react';
 import styled from "styled-components";
-import {Dimensions} from "../../Application/globalStyled";
 import {makeAutoObservable} from "mobx";
+import {StaticDimensions} from "../../Application/globalValues";
 
 export const zooRef = createRef()
 
@@ -38,12 +38,14 @@ const ZoomController = () => {
 
 const Div = styled.div`
   display: flex;
-  @media (min-width: ${Dimensions.tablet}px) {
+  @media (min-width: ${StaticDimensions.tablet}px) {
     display: none;
   }
   flex-direction: column;
   width: 12vw;
-  height: 15vh;
+  height: 20vh;
+  max-width: 50px;
+  max-height: 100px;
   align-items: stretch;
   justify-content: stretch;
   user-select: none;

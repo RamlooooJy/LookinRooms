@@ -7,12 +7,13 @@ import {zoom} from "../ZoomController/ZoomController";
 
 
 const CommonWrapper: FC<FlexI> = observer(({children, ...props}) => {
+  const width = dimensions.width
   const ref = useRef<any>()
   useLayoutEffect(() => {
     if(window.innerHeight < 500) {
       ref.current.style = `position: absolute; top: 0; left: 0; right: 0;`
-    }
-  }, [dimensions.width])
+    } else ref.current.style = ''
+  }, [width])
 
   return (
     <StyledViewWrapper ref={ref} scale={zoom.zoom} {...props}>

@@ -1,31 +1,28 @@
-import React, {FC, useState} from "react";
-import { StyledInput } from "./styled";
+import React, {FC, InputHTMLAttributes, KeyboardEventHandler, SyntheticEvent, useState} from "react";
+import {StyledInput} from "./styled";
 import ErrorLine from "./ErrorLine";
 
-interface I {
-  placeholder: string,
+interface InputI extends InputHTMLAttributes<HTMLInputElement> {
   icon?: string
 }
 
-const Default:FC<I> = ({icon, placeholder})=>{
+const Input: FC<InputI> = ({icon, placeholder, onSubmit, onChange, ...props}) => {
   const [value, setValue] = useState('')
-  const [isError, setError] = useState(false)
-  const change = (e:any) => {
-    const inputValue = e.target.value
-    if(inputValue.length > 5 && isError) {
-      setError(false)
-    }
-    setValue(inputValue)
+  const [isError, setIsError] = useState(false)
+  const onChangeCallback = (ev: any) => {
+    console.log(ev.target.name)
+    setValue(ev.target.value)
+    onChange && onChange(ev)
   }
-  const onBlur = () => {
-    if(value.length <= 5 && !isError) {
-      setError(true)
+  const onKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if(event.charCode === 13) {
+      onSubmit && onSubmit(event)
     }
   }
   return <StyledInput icon={icon} isError={isError}>
-    <input placeholder={placeholder} value={value} onChange={change} onBlur={onBlur} />
+    <input onKeyPress={onKeyPress} placeholder={placeholder} value={value} onChange={onChangeCallback} {...props}/>
     {isError && <ErrorLine>Поле {placeholder} не должно быть пустым!</ErrorLine>}
   </StyledInput>
 }
 
-export default Default
+export default Input

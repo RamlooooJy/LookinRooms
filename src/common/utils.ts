@@ -11,6 +11,9 @@ export const debounce = (func: any, ms = 500) => {
     }
   }
 }
+export const isEmptyObject = (obj: Object) => {
+  return Object.keys(obj).length === 0
+}
 export const uid = () => {
   return u()
 }

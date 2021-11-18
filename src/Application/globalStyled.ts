@@ -1,13 +1,19 @@
 import styled, {createGlobalStyle, css} from "styled-components";
+import {GlobalTheme} from "./globalValues";
 
 export const Global = createGlobalStyle`
   html {
+    //noinspection CssInvalidPropertyValue
     min-height: -webkit-fill-available;
+    font-size: 18px;
+    background: ${GlobalTheme.colors.background};
   }
+
   body {
+    //noinspection CssInvalidPropertyValue
     height: -webkit-fill-available;
-    overflow: hidden;
   }
+
   .application * {
     font-family: 'Averia Sans Libre', sans-serif;
 
@@ -17,13 +23,14 @@ export const Global = createGlobalStyle`
     //'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     //sans-serif;
   }
+
   .application a {
     color: #61dafb;
     text-decoration: none;
   }
 `
 
-export const StyledApp = styled.div<{Hheight: string}>`
+export const StyledApp = styled.div<{ Hheight: string }>`
   position: relative;
   overflow: auto;
   display: flex;
@@ -31,7 +38,7 @@ export const StyledApp = styled.div<{Hheight: string}>`
   background-color: ${props => props.theme.colors.background};
   font-size: calc(10px + 2vmin);
   color: white;
-  height: ${props=>props.Hheight};
+  height: ${props => props.Hheight};
   @media ${props => props.theme.mediaQueries.phoneAndTablet} {
     flex-direction: column-reverse;
   }
@@ -56,14 +63,13 @@ interface AbsoluteI {
   fixedBottom?: boolean
   fixedRight?: boolean
 }
+
 export const Absolute = styled.div.attrs({type: 'Absolute'})<AbsoluteI>`
   position: absolute;
   ${({fixedBottom, top}) => fixedBottom ? css`bottom: ${top}` : css`top: ${top}`};
   ${({fixedRight, left}) => fixedRight ? css`right: ${left}` : css`left: ${left}`};
   ${({transform}) => transform && css`transform: ${transform}`};
 `
-
-
 
 export const Flex = styled.div.attrs({type: 'Flex'})<FlexI>`
   display: flex;
@@ -77,53 +83,3 @@ export const Flex = styled.div.attrs({type: 'Flex'})<FlexI>`
   ${({overflow}) => overflow && css`overflow: ${overflow}`};
   ${({minHeight}) => minHeight && css`min-height: ${minHeight}`};
 `
-
-const tablet = 1200
-export const Dimensions = {
-  phone: 560,
-  tablet: tablet,
-  pc: 1600,
-  phoneAndTablet: tablet,
-}
-export const GlobalTheme = {
-  colors: {
-    primary: '#6C5DD3',
-    red: 'rgb(139,0,0)',
-    dark: '#24282e',
-    fontSmooth: '#808191',
-    fontCommon: '#F0F8FFFF',
-    secondary: '#3F8CFF',
-    orange: '#ff754c',
-    gray: '#323540',
-    silver: '#484A57',
-    background: '#282c34',
-    // transparent
-    colorDefault: 'rgba(128, 129, 145, .6)',
-    primaryTransparent: 'rgba(108, 93, 211, .6)',
-    redTransparent: 'rgba(139,0,0,.6)',
-    darkTransparent: '#0000000d',
-    secondaryTransparent: 'rgba(63, 140, 255, .6)',
-    errorTransparent: 'rgba(255, 117, 76, .6)',
-  },
-  tableColors: {
-    tableColor: 'rgba(36, 39, 49, 0.3)',
-    tableWrapper: 'rgb(19, 20, 27, 0.3)',
-    tableBorder: 'rgba(255, 255, 255, 0.3)'
-  },
-  shadows: {
-    primary: '0 0 20px rgba(0, 0, 0, 0.2)'
-  },
-  transitions: {
-    primary: '200ms ease-out',
-    fast: '50ms ease-out'
-  },
-  mediaQueries: {
-    phone: `(max-width: ${Dimensions.phone}px)`,
-    tablet: `(max-width: ${Dimensions.tablet}px) and (min-width: ${Dimensions.phone}px)`,
-    pc: `(max-width: ${Dimensions.pc}px) and (min-width: ${Dimensions.tablet}px)`,
-    fullHD: `(min-width: ${Dimensions.pc}px`,
-    phoneAndTablet: `(max-width: ${Dimensions.tablet}px)`,
-    mouseScreen: `(pointer: fine)`,
-    touchScreen: `(pointer: coarse)`,
-  }
-}

@@ -1,9 +1,10 @@
 import styled, {css} from "styled-components";
 import arrowRight from '../../assets/img/nav-arrow.svg'
+import {ButtonI} from "./Button";
 
-const Styled = styled.button.attrs({title: 'Button'})<{borderColor?:string, margin?:string, background?: string, secondary?: boolean, toggled?: boolean }>`
+const Styled = styled.button.attrs({title: 'Button'})<ButtonI>`
   font-weight: 600;
-  cursor: pointer;
+  cursor: ${props=>props.disabled ? 'default' :  'pointer'};
   width: 100%;
   padding: 12px 16px;
   border-radius: 12px;
@@ -30,7 +31,7 @@ const Styled = styled.button.attrs({title: 'Button'})<{borderColor?:string, marg
     background-image: url(${arrowRight});
   }
 
-  ${({secondary, toggled, background, borderColor}) => toggled
+  ${({secondary, toggled, background, disabled}) => toggled
           ? css`
             &:not(.active) {
               color: ${(props) => props.theme.colors.fontSmooth};
@@ -44,11 +45,11 @@ const Styled = styled.button.attrs({title: 'Button'})<{borderColor?:string, marg
           `
           : secondary ? css`
                     color: ${(props) => props.theme.colors.fontCommon};
-                    background: ${(props) => props.theme.colors.secondary};
+                    background: ${(props) => disabled ? props.theme.colors.secondaryTransparent : props.theme.colors.secondary};
                   `
                   : css`
                     color: ${(props) => props.theme.colors.fontCommon};
-                    background: ${(props) => props.theme.colors.darkTransparent};
+                    background: ${(props) => disabled? props.theme.colors.gray : props.theme.colors.darkTransparent};
                   `
   }`
 

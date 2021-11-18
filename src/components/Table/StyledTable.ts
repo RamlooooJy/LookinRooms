@@ -1,5 +1,5 @@
 import styled, {css} from "styled-components";
-import {Flex} from "../../Application/globalStyled";
+import {LockedInfoT, ReservedInfoT, TableComponentI} from "../../common/interfaces";
 
 type tableSizeT = 's1' | 's2' | 's3'
 const tableSizes = {
@@ -33,7 +33,18 @@ const tableSizes = {
   },
 }
 
-export const StyledTable = styled.div<{ margin: string, reversedTable?: boolean, tableNumber: string, active: boolean, tableSize: tableSizeT }>`
+type StyledTableT = {
+  margin: string,
+  active: boolean,
+  tableNumber: string,
+  tableSize: tableSizeT,
+  reversedTable?: TableComponentI["reversedTable"],
+  frizzed: LockedInfoT | null
+  reserved: ReservedInfoT | null
+}
+
+
+export const StyledTable = styled.div<StyledTableT>`
   cursor: pointer;
   display: flex;
   width: ${p => p.reversedTable ? tableSizes.pc[p.tableSize].height : tableSizes.pc[p.tableSize].width}px;
@@ -46,7 +57,10 @@ export const StyledTable = styled.div<{ margin: string, reversedTable?: boolean,
   flex-direction: row;
   flex-wrap: wrap;
   align-content: space-between;
-  margin: ${({margin}) => margin || 'initial'}
+  margin: ${({margin}) => margin || 'initial'};
+  ${props => (props.frizzed || props.reserved) && css`pointer-events: none;`}
+  ${props => (props.reserved) && css`opacity: .4;`}
+
 }
 
 &:before {
@@ -60,10 +74,14 @@ export const StyledTable = styled.div<{ margin: string, reversedTable?: boolean,
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: ${props => props.theme.tableColors.tableColor};
+  background: ${({frizzed, reserved, theme}) => {
+    if(reserved) return theme.colors.primaryTransparent
+    if(frizzed) return theme.colors.redTransparent
+    return theme.tableColors.tableColor
+  }};
   width: 80%;
   height: 80%;
-  border: 1px solid ${props => props.theme.tableColors.tableBorder};
+  border: 1px solid ${props => props.frizzed ? props.theme.tableColors.tableColor : props.theme.tableColors.tableBorder};
   font-size: 24px;
 }
 

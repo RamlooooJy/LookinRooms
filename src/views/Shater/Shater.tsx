@@ -1,47 +1,31 @@
 import React, {FC} from "react";
 import {observer} from "mobx-react-lite";
-import {Absolute} from "../../Application/globalStyled";
+import {Absolute, Flex} from "../../Application/globalStyled";
 import Sign from "../../components/Sign/Sign";
 import CommonWrapper from "../../components/CommonWrapper/CommonWrapper";
 import {tablesStore} from "../../store/tables/tablesStore";
 import Spinner from "../../components/BackgroundSpinner/BackgroundSpinner";
+import TableWrapper from "../../components/TableWrapper/TableWrapper";
+import {RoomItemT} from "../../common/interfaces";
 
 const Shater: FC = observer(() => {
-  if(!tablesStore.data.Shater) return <Spinner></Spinner>
-
-  const tablesAll = {
-    leftTop: tablesStore.data.Shater.filter(item=>item.TableNumber.match('1\.')),
-    // leftBottom: tablesStore.data.Shater,
-    // rightTop: tablesStore.data.Shater.filter(item=>item.TableNumber.match('2\.')),
-    // rightTopBottom: tablesStore.data.Shater,
-  }
-  // const tables: TableT[] = tablesAll.leftBottom
-  // const tables2: TableT[] = [
-  //   {id: 12, TableNumber: '4.3', price: 15000, GuestsAmount: 4, AdditionalGuestAmount: 2},
-  //   {id: 13, TableNumber: '4.2', price: 15000, GuestsAmount: 4, AdditionalGuestAmount: 2},
-  //   {id: 14, TableNumber: '26', price: 15000, GuestsAmount: 4, AdditionalGuestAmount: 2},
-  //   {id: 15, TableNumber: '26', price: 15000, GuestsAmount: 4, AdditionalGuestAmount: 2},
-  //   {id: 16, TableNumber: '26', price: 15000, GuestsAmount: 4, AdditionalGuestAmount: 2}
-  // ]
-  // const tables3: TableT[] = [
-  //   {id: 14, TableNumber: '26', price: 15000, GuestsAmount: 4, AdditionalGuestAmount: 2},
-  //   {id: 15, TableNumber: '26', price: 15000, GuestsAmount: 4, AdditionalGuestAmount: 2}
-  // ]
-  // const tables4: TableT[] = [
-  //   {id: 14, TableNumber: '26', price: 15000, GuestsAmount: 4, AdditionalGuestAmount: 2},
-  //   {id: 15, TableNumber: '26', price: 15000, GuestsAmount: 4, AdditionalGuestAmount: 2}
-  // ]
+  const data = tablesStore.getDataByView('Shater')
+  if(!data) return <Spinner/>
+  const tables1 = ['1.3', '1.2', '1.1'].map(num => data.find(table=>table.TableNumber === num)) as RoomItemT[]
+  const tables2 = ['4.3', '4.2', '4.1', '3.2', '3.1'].map(num => data.find(table=>table.TableNumber === num)) as RoomItemT[]
+  const tables3 = ['2.1', '2.2'].map(num => data.find(table=>table.TableNumber === num)) as RoomItemT[]
+  const tables4 = ['2.3', '2.4'].map(num => data.find(table=>table.TableNumber === num)) as RoomItemT[]
 
   return (
     <CommonWrapper direction={'row'} justify={"space-between"}>
-      {/*<Flex justify={'space-between'} align={"flex-start"} sizeY={'100%'}>*/}
-      {/*  <TableWrapper tables={tables}/>*/}
-      {/*  <TableWrapper reversedTables space={'10'} direction={"row"} tables={tables2}/>*/}
-      {/*</Flex>*/}
-      {/*<Flex align={"flex-end"}>*/}
-      {/*  <TableWrapper direction={"row"} tables={tables3}/>*/}
-      {/*  <TableWrapper padding={'0 20px 20px'} reversedTables tables={tables4}/>*/}
-      {/*</Flex>*/}
+      <Flex justify={'space-between'} align={"flex-start"} sizeY={'100%'}>
+        <TableWrapper tables={tables1}/>
+        <TableWrapper reversedTables={['3.2', '3.1']} space={'10'} direction={"row"} tables={tables2}/>
+      </Flex>
+      <Flex align={"flex-end"}>
+        <TableWrapper direction={"row"} tables={tables3}/>
+        <TableWrapper padding={'0 20px 20px'} reversedTables tables={tables4}/>
+      </Flex>
       <Absolute top={'0'} left={'0'}>
         <Sign>WC</Sign>
       </Absolute>

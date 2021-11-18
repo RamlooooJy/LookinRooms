@@ -29,9 +29,10 @@ export const StyledModalContainer = styled.div`
   border-radius: 16px;
   background: ${props => props.theme.colors.dark};
   box-shadow: ${props => props.theme.shadows.primary};
+  overflow: auto;
 `
 export const StyledInputsContainer = styled.div`
-  margin-top: 100px;
+  margin-top: 15vh;
 `
 
 export const StyledControlsContainer = styled(Flex)`

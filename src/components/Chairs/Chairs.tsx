@@ -1,18 +1,18 @@
 import React, {FC} from 'react';
 import {uid} from "../../common/utils";
-import {ChairT, TableT} from "../../common/interfaces";
-import { StyledChair } from './styled';
+import {ChairT, RoomItemT} from "../../common/interfaces";
+import {StyledChair} from './styled';
 
-const Chairs:FC<{data: TableT}> = ({data}) => {
+const Chairs:FC<{ data: RoomItemT }> = ({data}) => {
   const chairs: () => ChairT[] = () => {
-    const guests = [...Array.from({length: data.GuestsAmount})].map(_ => 'default')
-    const additionalGuests = [...Array.from({length: data.AdditionalGuestAmount || 0})].map(_ => 'more')
+    const guests = [...Array.from({length: data.TableInfo.AvailableGuestAmount})].map(_ => 'default')
+    const additionalGuests = [...Array.from({length: data.TableInfo.TotalGuestWithAdditional - data.TableInfo.AvailableGuestAmount || 0})].map(_ => 'more')
     return [...guests, ...additionalGuests] as ChairT[]
   }
   return (
     <>
       {
-        chairs().map((color) => <StyledChair key={uid()} color={color}/>)
+        chairs().map((color) => <StyledChair frizzed={data.Locked} key={uid()} color={color}/>)
       }
     </>
   );

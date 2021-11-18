@@ -1,26 +1,27 @@
-type queryT = {
+import {REQUEST_URL} from "../index";
+
+type QueryT<T> = {
   query: string
-  result: any[]
+  result: T[]
 }
+//Omit<TablesResultApiT, "Date"> exclude some data from interface
+//Pick<TablesResultApiT, "Shater" | "Vip"> Takes only params from the right arguments
+//keyof TablesResultApiT
 
-type Request = (request: string, queryName: string, data: string) => Promise<queryT>
 
-export const GetRequestApi: Request = async (request, queryName, data) => {
-  const query = queryName ? `?${queryName}=${data}` : ''
-  const url = `http://localhost:3001/${request}${query}`
-  let result:any = {}
+export const GetRequestApi = async <M>(request: string, data: any): Promise<QueryT<M>> => {
+  let query:string = Object.keys(data).map(key=>`${key}=${data[key]}`).join('&')
+  console.log(query)
+  const url = `${REQUEST_URL}${request}?${query}`
+
+  let result = {query: 'error', result: []} as QueryT<M>
   try {
     result = await (await fetch(url)).json()
+  } catch (err) {
+    console.error('Error query, Something gone on server side!!!\n\n', err)
   }
-  catch (err) {console.log(err)}
   return result
 }
 
-export const getTables: (date: string) => Promise<any[]> = async (date: string) => {
-  const result = await GetRequestApi('getTables', 'date', date)
-  const [firstResult, ...rest] = result.result
-  return result.result
-
-}
 
 

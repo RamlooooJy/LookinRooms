@@ -1,18 +1,19 @@
 class LocalStorageProxy {
-  private static getName (name: string): string {
-    return `${name}`
+
+  public remove(name:string): void {
+    window.localStorage.removeItem(name)
   }
 
   public save(name: string, data: unknown): void {
     window.localStorage.setItem(
-      LocalStorageProxy.getName(name),
+      name,
       JSON.stringify(data),
     )
   }
 
   public restore(name: string) {
     const localStorageData = window.localStorage.getItem(
-      LocalStorageProxy.getName(name),
+      name
     )
     return localStorageData ? JSON.parse(localStorageData) : null
   }

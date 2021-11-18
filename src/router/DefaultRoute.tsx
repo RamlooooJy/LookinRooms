@@ -11,7 +11,7 @@ interface DefaultRouteI {
 
 const DefaultRoute: FC<DefaultRouteI> = ({Component, path, props, isDefault}) => {
   return <Route>
-    <Suspense fallback={<Spinner/>}>
+    <Suspense fallback={<Spinner background={'transparent'}/>}>
       <Component {...props} />
     </Suspense>
   </Route>

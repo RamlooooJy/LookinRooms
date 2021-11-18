@@ -1,14 +1,20 @@
 import styled from "styled-components";
 import SpinnerSrc from "../../assets/img/look-phone-logo.png"
+import {FC} from "react";
 
-const StyledSpinner = styled.div<{src: string}>`
+type SpinnerI = {
+  background?: string
+  src?: string
+}
+const Spinner:FC<SpinnerI> = ({background}) => <StyledSpinner background={background || ''} src={SpinnerSrc}><div /></StyledSpinner>
+const StyledSpinner = styled.div<SpinnerI>`
   z-index: 999999999999999;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: ${props=>props.theme.colors.gray};
+  background: ${({background, theme})=>background ? theme.colors[background] : theme.colors.gray};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -39,7 +45,5 @@ const StyledSpinner = styled.div<{src: string}>`
     }
   }
 `
-
-const Spinner = () => <StyledSpinner src={SpinnerSrc}><div /></StyledSpinner>
 
 export default Spinner

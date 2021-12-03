@@ -1,21 +1,17 @@
 import React, {FC} from "react";
-import {observer} from "mobx-react-lite";
 import {Absolute, Flex} from "../../Application/globalStyled";
 import Sign from "../../components/Sign/Sign";
 import CommonWrapper from "../../components/CommonWrapper/CommonWrapper";
-import {tablesStore} from "../../store/tables/tablesStore";
-import Spinner from "../../components/BackgroundSpinner/BackgroundSpinner";
 import TableWrapper from "../../components/TableWrapper/TableWrapper";
-import {RoomItemT} from "../../common/interfaces";
+import {ViewI} from "../../common/interfaces";
+import {findTablesByNumbers} from "../../common/utils";
 
-const Shater: FC = observer(() => {
-  const data = tablesStore.getDataByView('Shater')
-  if(!data) return <Spinner/>
-  const tables1 = ['1.3', '1.2', '1.1'].map(num => data.find(table=>table.TableNumber === num)) as RoomItemT[]
-  const tables2 = ['4.3', '4.2', '4.1', '3.2', '3.1'].map(num => data.find(table=>table.TableNumber === num)) as RoomItemT[]
-  const tables3 = ['2.1', '2.2'].map(num => data.find(table=>table.TableNumber === num)) as RoomItemT[]
-  const tables4 = ['2.3', '2.4'].map(num => data.find(table=>table.TableNumber === num)) as RoomItemT[]
-
+const Shater: FC<ViewI> = ({data}) => {
+  const tables1 = findTablesByNumbers(['1.3', '1.2', '1.1'], data)
+  const tables2 = findTablesByNumbers(['4.3', '4.2', '4.1', '3.2', '3.1'], data)
+  const tables3 = findTablesByNumbers(['2.1', '2.2'], data)
+  const tables4 = findTablesByNumbers(['2.3', '2.4'], data)
+  if(!tables1) return <>No Tables for This Date</>
   return (
     <CommonWrapper direction={'row'} justify={"space-between"}>
       <Flex justify={'space-between'} align={"flex-start"} sizeY={'100%'}>
@@ -31,7 +27,7 @@ const Shater: FC = observer(() => {
       </Absolute>
     </CommonWrapper>
   )
-})
+}
 export default Shater
 
 

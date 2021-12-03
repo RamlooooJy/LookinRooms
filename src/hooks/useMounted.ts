@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import {tablesStore} from "../store/tables/tablesStore";
 import {StaticDimensions} from "../Application/globalValues";
+import {dateStore} from "../store/DateStore/DateStore";
 
 export const useMounted = () => {
   const [height, setHeight] = useState('100vh')
@@ -19,6 +20,8 @@ export const useMounted = () => {
      //loadDafaultStore
      //loadSomethinMore */
   }, [])
-
+  useEffect(() => {
+    console.log(dateStore.date)
+  }, [dateStore.date])
   return [height]
 }

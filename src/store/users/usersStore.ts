@@ -1,14 +1,14 @@
 import Base64 from 'crypto-js/enc-base64';
 import hmacSHA512 from 'crypto-js/hmac-sha512';
 import {makeAutoObservable} from "mobx";
-import {UserResultApiT, UserStoreI} from "../../common/interfaces";
 import {KEY} from "../../index";
 import {userLoginQuery} from "../../queries/user/userLoginQuery";
 import {localStorageProxy} from "../localStorage";
 import {USER_LOGIN} from "../../common/enums";
+import {UserResultApiT, UserStoreI} from "../../common/dataInterfaces";
 
 class UsersStore {
-  private users: UserStoreI | null = null
+  private users: UserStoreI = null
   private logged: UserResultApiT | null = localStorageProxy.restore(USER_LOGIN)
 
   constructor() {

@@ -25,14 +25,14 @@ export const StyledModalContainer = styled.div`
   width: 100%;
   height: 100%;
   max-width: 600px;
-  max-height: 800px;
+  max-height: 820px;
   border-radius: 16px;
   background: ${props => props.theme.colors.dark};
   box-shadow: ${props => props.theme.shadows.primary};
   overflow: auto;
 `
 export const StyledInputsContainer = styled.div`
-  margin-top: 15vh;
+  margin-top: 10vh;
 `
 
 export const StyledControlsContainer = styled(Flex)`

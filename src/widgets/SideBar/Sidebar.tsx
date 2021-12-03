@@ -1,7 +1,7 @@
 import React, {FC} from "react";
 import Logo from "../../components/Logo";
 import Navigation from "../../components/Navigation/Navigation";
-import DatePicker from "../../components/DatePicker";
+import DatePick from "../../components/DatePicker/DatePick";
 import {StyledControlsContainer, StyledSidebar} from "./styled";
 import AdminBar from "../../components/AdminBar/AdminBar";
 import {Flex} from "../../Application/globalStyled";
@@ -17,7 +17,7 @@ const Sidebar: FC = observer(() => {
       <Navigation isCompact={isCompact} size={size}/>
     </Flex>
     <StyledControlsContainer>
-      <DatePicker/>
+      <DatePick/>
       <AdminBar/>
     </StyledControlsContainer>
   </StyledSidebar>

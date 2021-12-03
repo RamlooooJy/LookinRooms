@@ -2,12 +2,14 @@ import React, {FC} from 'react';
 import {createPortal} from "react-dom";
 import {StyledModal, StyledModalContainer} from './styled';
 import Logo from "../../components/Logo";
+import {RoomItemT} from "../../common/dataInterfaces";
 
 export interface ModalI {
-  isActive: boolean,
+  data: RoomItemT
+  isActive: boolean
   toggleModal: () => void
-  onClose?: () => void,
-  onOpen?: () => void,
+  onClose?: () => void
+  onOpen?: () => void
 }
 
 
@@ -16,7 +18,7 @@ const Portal: FC = ({children}) => {
   // @ts-ignore
   return createPortal(children, container)
 };
-const Modal: FC<ModalI> = ({isActive, toggleModal, children}) => {
+const Modal: FC<Omit<ModalI, 'data'>> = ({isActive, toggleModal, children}) => {
   const clickOutside = (e: any) => {
     e.currentTarget === e.target && closeModal()
   }

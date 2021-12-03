@@ -1,20 +1,30 @@
-import {FC, LazyExoticComponent, Suspense} from "react";
+import React, {FC, LazyExoticComponent, Suspense} from "react";
 import {Route} from "react-router-dom";
 import Spinner from "../components/BackgroundSpinner/BackgroundSpinner";
+import {observer} from "mobx-react-lite";
+import {tablesStore} from "../store/tables/tablesStore";
+import {ViewI} from "../common/interfaces";
+import {Rooms} from "../common/dataInterfaces";
 
 interface DefaultRouteI {
-  Component: LazyExoticComponent<FC> | FC,
+  Component: LazyExoticComponent<FC<ViewI>> | FC,
   path: string,
+  dataKey?: Rooms,
   props?: any,
   isDefault?: boolean
 }
 
-const DefaultRoute: FC<DefaultRouteI> = ({Component, path, props, isDefault}) => {
-  return <Route>
+const DefaultRoute: FC<DefaultRouteI> = observer(({dataKey= '', path, props, isDefault, Component}) => {
+  const store = tablesStore.getDataByView(dataKey)
+  console.log(store)
+  return <Route path={path}>
     <Suspense fallback={<Spinner background={'transparent'}/>}>
-      <Component {...props} />
+      {tablesStore.isPending
+        ? <Spinner/>
+        : <Component data={store} {...props} />
+      }
     </Suspense>
   </Route>
-}
+})
 export default DefaultRoute
 

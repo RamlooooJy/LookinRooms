@@ -1,5 +1,5 @@
 import {GetRequestApi} from "./query";
-import {TablesReservedApiT} from "../common/interfaces";
+import {TablesReservedApiT} from "../common/dataInterfaces";
 
 export const getReservedTables: (date: string) => Promise<TablesReservedApiT> = async (date) => {
   if(!date) {

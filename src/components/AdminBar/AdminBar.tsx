@@ -8,7 +8,7 @@ import {observer} from "mobx-react-lite";
 
 const AdminBar: FC = observer(() => {
   const [modalActive, setModalActive] = useState(false)
-  const userData = usersStore.user && usersStore.user.Login || '?'
+  const userData = usersStore.user && (usersStore.user.Login || '?')
   const onClick = () => {
     if(usersStore.user) {
       usersStore.logout()

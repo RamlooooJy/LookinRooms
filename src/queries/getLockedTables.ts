@@ -1,5 +1,5 @@
 import {GetRequestApi} from "./query";
-import {TablesLockedResultApiT} from "../common/interfaces";
+import {TablesLockedResultApiT} from "../common/dataInterfaces";
 
 export const getLockedTables: (date: string) => Promise<TablesLockedResultApiT> = async (date: string) => {
   if(!date) {

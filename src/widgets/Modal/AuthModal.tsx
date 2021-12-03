@@ -1,25 +1,25 @@
 import React, {FC, useState} from 'react';
-import Modal, {ModalI} from "./index";
+import Modal, {ModalI} from "./Modal";
 import Input from "../../components/Input";
 import {StyledControlsContainer, StyledInputsContainer} from './styled';
 import Button from "../../components/Button/Button";
 import {usersStore} from "../../store/users/usersStore";
 
-const validate = (values: any) => {
-  const errors = {} as any;
-  if (!values.login) {
-    errors.email = 'Required';
-  } else if (
-    !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.login)
-  ) {
-    errors.email = 'Invalid email address';
-  }
-  return errors;
-}
+// const validate = (values: any) => {
+//   const errors = {} as any;
+//   if (!values.login) {
+//     errors.email = 'Required';
+//   } else if (
+//     !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.login)
+//   ) {
+//     errors.email = 'Invalid email address';
+//   }
+//   return errors;
+// }
 type FormInitial = {
   [key: string]: string
 }
-const AuthModal: FC<ModalI> = ({isActive, toggleModal}) => {
+const AuthModal: FC<Omit<ModalI, 'data'>> = ({isActive, toggleModal}) => {
   const [formValues, setFormValues] = useState<FormInitial>({login: '2', password: ''})
   const [isPending, setIsPending] = useState(false)
   const onSubmit = (ev: any) => {

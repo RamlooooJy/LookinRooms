@@ -1,5 +1,5 @@
-import {UserResultApiT} from "../../common/interfaces";
 import {GetRequestApi} from "../query";
+import {UserResultApiT} from "../../common/dataInterfaces";
 
 
 export const userLoginQuery: (login: string, hash: string) => Promise<UserResultApiT> = async (login, hash) => {

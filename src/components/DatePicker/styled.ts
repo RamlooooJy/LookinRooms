@@ -1,20 +1,25 @@
 import styled from "styled-components";
-import img from '../../assets/img/dropdown.svg'
 
-export const StyledDatePicker = styled.div<{ isActive: boolean }>`
+export const StyledDatePicker = styled.div`
+  min-width: 150px;
   display: flex;
+  justify-content: center;
   align-items: center;
-  position: relative;
-  .icon-dropdown {
-    width: 15px;
-    background: url("${img}") no-repeat center / contain;
-    transition: 200ms ease-out;
-    transform: ${(props) => props.isActive ? `rotate(-180deg)` : ''};
+  & > div {
+    width: 100%;
   }
-`
-
-export const DropdownContainer = styled.div`
-  position: absolute;
-  top: 0;
-  transform: translateY(-100%);
+  button {
+    cursor: pointer;
+    box-sizing: border-box;
+    position: relative;
+    border: none;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    background-color: #373A43;
+    border-radius: 16px;
+    font-size: 24px;
+    color: ${props => props.theme.colors.fontCommon};
+    background-repeat: no-repeat;
+  }
 `

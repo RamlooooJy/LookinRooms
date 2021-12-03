@@ -7,6 +7,5 @@ import {defaultRoutes} from "./defaultRoutes";
 * */
 export const goTo = (path: string, history: any) => {
   const isExist = defaultRoutes.find(item=>item.path === path)
-  console.log(isExist)
   isExist && path !== history.location.pathname && history.push(path)
 }

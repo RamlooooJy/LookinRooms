@@ -1,5 +1,6 @@
 import styled, {css} from "styled-components";
-import {LockedInfoT, ReservedInfoT, TableComponentI} from "../../common/interfaces";
+import {TableComponentI} from "../../common/interfaces";
+import {LockedInfoT, ReservedInfoT} from "../../common/dataInterfaces";
 
 type tableSizeT = 's1' | 's2' | 's3'
 const tableSizes = {
@@ -75,8 +76,8 @@ export const StyledTable = styled.div<StyledTableT>`
   left: 50%;
   transform: translate(-50%, -50%);
   background: ${({frizzed, reserved, theme}) => {
-    if(reserved) return theme.colors.primaryTransparent
-    if(frizzed) return theme.colors.redTransparent
+    if (reserved) return theme.colors.primaryTransparent
+    if (frizzed) return theme.colors.redTransparent
     return theme.tableColors.tableColor
   }};
   width: 80%;

@@ -9,7 +9,7 @@ const Routes: FC = () => {
     <Redirect exact from={'/'} to={defaultRoutes[0].path}/>
     {
       defaultRoutes.map((item) =>
-        <DefaultRoute key={item.path} path={item.path} Component={item.component} isDefault={true}/>
+        <DefaultRoute key={item.path} dataKey={item.data} path={item.path} Component={item.component} isDefault={true}/>
       )
     }
     <DefaultRoute path="*" Component={Error404} />

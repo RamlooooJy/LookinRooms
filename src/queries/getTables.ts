@@ -1,5 +1,5 @@
 import {GetRequestApi} from "./query";
-import {TablesResultApiT} from "../common/interfaces";
+import {TablesResultApiT} from "../common/dataInterfaces";
 
 export const getTables: (date: string) => Promise<TablesResultApiT> = async (date: string) => {
   if(!date) {

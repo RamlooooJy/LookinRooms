@@ -8,7 +8,7 @@ const TableWrapper: FC<TableWrapperI> = (props) => {
   return (
     <StyledTableWrapper {...props}>
       {props.tables.map((table, idx) =>
-        <Table space={props.space} data={table} key={table.TableNumber} inline={props.direction === 'row'}
+        <Table space={props.space} data={table} key={table.TableNumber || Math.random()} inline={props.direction === 'row'}
                isLast={idx === props.tables.length - 1} {...table}
                reversedTable={props.reversedTables}/>)}
     </StyledTableWrapper>

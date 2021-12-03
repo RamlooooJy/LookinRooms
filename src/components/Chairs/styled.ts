@@ -1,13 +1,13 @@
 import styled from "styled-components";
-import {RoomItemT} from "../../common/interfaces";
+import {RoomItemT} from "../../common/dataInterfaces";
 
 const size = '36px'
 const mobSize = '19px'
-type StyledChair = {
+type StyledChairI = {
   color: 'default' | 'more'
   frizzed: RoomItemT["Locked"]
 }
-export const StyledChair = styled.div<StyledChair>`
+export const StyledChair = styled.div<StyledChairI>`
   display: block;
   min-width: ${size};
   min-height: ${size};

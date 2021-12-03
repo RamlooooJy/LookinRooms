@@ -35,7 +35,7 @@ const Table: FC<TableComponentI> = ({data, ...props}) => {
                    tableSize={totalGuestAmmount()} frizzed={data.Locked} reserved={data.Reserved}>
         <Chairs data={data} />
       </StyledTable>
-      {isActiveModal && <TableModal isActive={isActiveModal} toggleModal={toggleModal}/>}
+      {isActiveModal && <TableModal data={data} isActive={isActiveModal} toggleModal={toggleModal}/>}
     </>
   );
 }

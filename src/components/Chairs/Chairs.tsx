@@ -1,7 +1,8 @@
 import React, {FC} from 'react';
 import {uid} from "../../common/utils";
-import {ChairT, RoomItemT} from "../../common/interfaces";
+import {ChairT} from "../../common/interfaces";
 import {StyledChair} from './styled';
+import {RoomItemT} from "../../common/dataInterfaces";
 
 const Chairs:FC<{ data: RoomItemT }> = ({data}) => {
   const chairs: () => ChairT[] = () => {

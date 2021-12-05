@@ -3,18 +3,15 @@ import {StyledTable} from './StyledTable';
 import {TableComponentI} from "../../common/interfaces";
 import TableModal from "../../widgets/Modal/TableModal";
 import Chairs from "../Chairs/Chairs";
+import {usersStore} from "../../store/users/usersStore";
 
 const Table: FC<TableComponentI> = ({data, ...props}) => {
   const [isActiveModal, setActiveModal] = useState(false)
   const toggleModal = () => {
-    if (isActiveModal) {
-      setActiveModal(false)
-    } else {
-      setActiveModal(true)
-    }
+    setActiveModal(!isActiveModal)
   }
   const onClick = () => {
-    toggleModal()
+    usersStore.user && toggleModal()
   }
   const margin = () => {
     const space = props.space || 5

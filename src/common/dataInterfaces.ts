@@ -36,11 +36,10 @@ type TableInfoT = {
   TotalGuestWithAdditional: number
 }
 export type LockedInfoT = {
-  Agent: string
-  Date: string
+  Agent: ReservedInfoT["Agent"]
   Expired: string
+  Date: string
   Info: string
-  Phone: string
   TableNumber: string
 }
 export type ReservedInfoT = {

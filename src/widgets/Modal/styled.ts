@@ -33,6 +33,11 @@ export const StyledModalContainer = styled.div`
 `
 export const StyledInputsContainer = styled.div`
   margin-top: 10vh;
+  .container {
+    div {
+      width: 49%;
+    }
+  }
 `
 
 export const StyledControlsContainer = styled(Flex)`

@@ -1,6 +1,5 @@
 import React, {FC} from "react";
-import {Absolute, Flex} from "../../Application/globalStyled";
-import Sign from "../../components/Sign/Sign";
+import {Flex} from "../../Application/globalStyled";
 import CommonWrapper from "../../components/CommonWrapper/CommonWrapper";
 import TableWrapper from "../../components/TableWrapper/TableWrapper";
 import {ViewI} from "../../common/interfaces";
@@ -22,9 +21,9 @@ const Shater: FC<ViewI> = ({data}) => {
         <TableWrapper direction={"row"} tables={tables3}/>
         <TableWrapper padding={'0 20px 20px'} reversedTables tables={tables4}/>
       </Flex>
-      <Absolute top={'0'} left={'0'}>
-        <Sign>WC</Sign>
-      </Absolute>
+      {/*<Absolute top={'0'} left={'0'}>*/}
+      {/*  <Sign>WC</Sign>*/}
+      {/*</Absolute>*/}
     </CommonWrapper>
   )
 }

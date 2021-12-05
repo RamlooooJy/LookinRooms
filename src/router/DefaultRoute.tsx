@@ -16,7 +16,6 @@ interface DefaultRouteI {
 
 const DefaultRoute: FC<DefaultRouteI> = observer(({dataKey= '', path, props, isDefault, Component}) => {
   const store = tablesStore.getDataByView(dataKey)
-  console.log(store)
   return <Route path={path}>
     <Suspense fallback={<Spinner background={'transparent'}/>}>
       {tablesStore.isPending

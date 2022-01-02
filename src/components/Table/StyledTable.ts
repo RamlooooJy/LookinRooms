@@ -38,6 +38,7 @@ type StyledTableT = {
   margin: string,
   active: boolean,
   tableNumber: string,
+  isAdmin: boolean
   tableSize: tableSizeT,
   reversedTable?: TableComponentI["reversedTable"],
   frizzed: LockedInfoT | null
@@ -59,47 +60,51 @@ export const StyledTable = styled.div<StyledTableT>`
   flex-wrap: wrap;
   align-content: space-between;
   margin: ${({margin}) => margin || 'initial'};
-  ${props => (props.frizzed || props.reserved) && css`pointer-events: none;`}
-  ${props => (props.reserved) && css`opacity: .4;`}
 
-}
+  ${props => (!props.isAdmin && (props.frizzed || props.reserved)) && css`pointer-events: none;`}
+  ${props => (!props.isAdmin && props.reserved) && css`opacity: .4;`}
+  
+  .price {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  
+  &:before {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    content: '${({tableNumber}) => tableNumber}';
+    transition: ${props => props.theme.transitions.fast};
+    border-radius: 30%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: ${({frizzed, reserved, theme}) => {
+      if (reserved) return theme.colors.primaryTransparent
+      if (frizzed) return theme.colors.redTransparent
+      return theme.tableColors.tableColor
+    }};
+    width: 80%;
+    height: 80%;
+    border: 1px solid ${props => props.frizzed ? props.theme.tableColors.tableColor : props.theme.tableColors.tableBorder};
+    font-size: 24px;
+  }
 
-&:before {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  content: '${({tableNumber}) => tableNumber}';
-  transition: ${props => props.theme.transitions.fast};
-  border-radius: 30%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: ${({frizzed, reserved, theme}) => {
-    if (reserved) return theme.colors.primaryTransparent
-    if (frizzed) return theme.colors.redTransparent
-    return theme.tableColors.tableColor
-  }};
-  width: 80%;
-  height: 80%;
-  border: 1px solid ${props => props.frizzed ? props.theme.tableColors.tableColor : props.theme.tableColors.tableBorder};
-  font-size: 24px;
-}
+  ${({active, theme}) => {
+    return active && css`
+      &:before {
+        background: ${theme.colors.secondaryTransparent};
+      }
 
-${({active, theme}) => {
-  return active && css`
-    &:before {
-      background: ${theme.colors.secondaryTransparent};
-    }
-
-    div {
-      background: ${theme.colors.secondaryTransparent};
-    }
-  `
-}}
-
-
-@media (pointer: fine) {
+      div {
+        background: ${theme.colors.secondaryTransparent};
+      }
+    `
+  }} @media(pointer: fine) {
   &:hover {
     :before {
       background: ${props => props.theme.colors.secondaryTransparent};
@@ -112,11 +117,11 @@ ${({active, theme}) => {
   }
 }
 
-@media ${props => props.theme.mediaQueries.phoneAndTablet} {
-  width: ${p => p.reversedTable ? tableSizes.mob[p.tableSize].height : tableSizes.mob[p.tableSize].width}px;
-  height: ${p => p.reversedTable ? tableSizes.mob[p.tableSize].width : tableSizes.mob[p.tableSize].height}px;
-  &:before {
-    font-size: 1rem;
+  @media ${props => props.theme.mediaQueries.phoneAndTablet} {
+    width: ${p => p.reversedTable ? tableSizes.mob[p.tableSize].height : tableSizes.mob[p.tableSize].width}px;
+    height: ${p => p.reversedTable ? tableSizes.mob[p.tableSize].width : tableSizes.mob[p.tableSize].height}px;
+    &:before {
+      font-size: 1rem;
+    }
   }
-}
 `

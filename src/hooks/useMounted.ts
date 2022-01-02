@@ -15,6 +15,7 @@ export const useMounted = () => {
   useEffect(() => {
     updateHeight()
     tablesStore.fetchTables()
+    tablesStore.fetchTablesInfo()
   }, [])
 
   return [height]

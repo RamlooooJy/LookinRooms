@@ -5,7 +5,6 @@ import {StyledDatePicker} from "./styled";
 import {dateStore, todayDate} from "../../store/DateStore/DateStore";
 import {tablesStore} from "../../store/tables/tablesStore";
 
-let interval: any = null
 const CutomDatePicker = forwardRef((props: any, ref: any) => (
   <button onClick={props.onClick} ref={ref}>
     {props.value}
@@ -21,6 +20,7 @@ const DatePick: FC = () => {
     setStartDate(date)
     dateStore.setDate(date)
     tablesStore.fetchTables(true)
+    tablesStore.fetchTablesInfo()
   }
   return (<StyledDatePicker data-title='Date picker'>
     <DatePicker

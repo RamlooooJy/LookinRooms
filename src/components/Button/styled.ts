@@ -12,7 +12,9 @@ const Styled = styled.button.attrs({title: 'Button'})<ButtonI>`
   margin: ${({margin}) => margin || '5px 0'};
   border: ${(props) => props.borderColor ? css`2px solid ${props.borderColor}` : 'none'};
   color: ${(props) => props.theme.colors.fontCommon};
-
+  &:disabled {
+    opacity: .2;
+  }
   .text {
     display: flex;
     align-items: center;

@@ -8,7 +8,8 @@ export const StyledSidebar = styled.div`
   padding: 10px 15px;
   flex-grow: 1;
   max-width: 360px;
-  min-width: 100px;
+  min-width: 360px;
+  
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
   overflow: auto hidden; 
   @media ${props => props.theme.mediaQueries.phoneAndTablet} {

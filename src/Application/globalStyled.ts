@@ -13,7 +13,8 @@ export const Global = createGlobalStyle`
     //noinspection CssInvalidPropertyValue
     height: -webkit-fill-available;
   }
-
+  
+  #modals,
   .application * {
     font-family: 'Averia Sans Libre', sans-serif;
 
@@ -22,11 +23,10 @@ export const Global = createGlobalStyle`
     //font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     //'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     //sans-serif;
-  }
-
-  .application a {
-    color: #61dafb;
-    text-decoration: none;
+    a {
+      color: #61dafb;
+      text-decoration: none;
+    }
   }
 `
 

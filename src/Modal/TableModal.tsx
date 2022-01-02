@@ -1,7 +1,7 @@
 import React, {FC, useState} from 'react';
 import Modal, {ModalI} from "./Modal";
-import {LockedInfoT, ReservedInfoT} from "../../common/dataInterfaces";
-import {tablesStore} from "../../store/tables/tablesStore";
+import {LockedInfoT, ReservedInfoT} from "../common/dataInterfaces";
+import {tablesStore} from "../store/tables/tablesStore";
 import ReserveInputs from "./ReserveInputs";
 import FreezeInputs from "./FreezeInputs";
 
@@ -31,6 +31,10 @@ const TableModal: FC<ModalI> = ({data, isActive, toggleModal}) => {
   }
   return (
     <Modal isActive={isActive} toggleModal={toggleModal}>
+      <div className="info">
+        <p>Стол: {data.TableNumber}</p>
+        <p>Цена: {data.TableInfo.Price}</p>
+      </div>
       {
         isReserve ?
           <ReserveInputs data={data} onReserve={onReserve} onCancel={onCancel} onFreeze={onFrize}/>

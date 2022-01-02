@@ -27,7 +27,6 @@ export const PostRequestApi = async <M>(request: string, data: any): Promise<Que
   const url = `${REQUEST_URL}${request}?${query}`
 
   let result = {query: 'error', result: []} as QueryT<M>
-  console.log(data)
   try {
     result = await (await fetch(url, {
       method: "post",

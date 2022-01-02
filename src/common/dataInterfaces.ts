@@ -71,6 +71,11 @@ export type TablesResultApiT = {
   // todo ////// soon
   // Izvestia: any[]
 }
+export type TablesInfoResultApiT = {
+  Shater: Omit<RoomItemT, "Locked" | "Reserved">[]
+  Main: Omit<RoomItemT, "Locked" | "Reserved">[]
+  Vip: Omit<RoomItemT, "Locked" | "Reserved">[]
+}
 
 export type TablesLockedResultApiT = LockedInfoT
 export type TablesReservedApiT = ReservedInfoT

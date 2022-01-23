@@ -1,14 +1,15 @@
 import {PostRequestApi} from "./query";
-import {TablesInfoResultApiT} from "../common/dataInterfaces";
+import {TablePricesT} from "../common/dataInterfaces";
 
-export const setTablesPricesOnDateQuery: (data: TablesInfoResultApiT, date: string) => Promise<any> = async (data, date) => {
+export const setTablesPricesOnDateQuery: (data: TablePricesT[], date: string) => Promise<any> = async (data, date) => {
   if(!data) {
     console.error('need specify the Date')
     return false
   }
   const result = await PostRequestApi<boolean>('setTablesPricesOnDate', {
-    ...data,
-    Date: date
+    Tables: data,
+    Date: date,
+    FullTime: new Date().toISOString()
   })
   return result.result
 }

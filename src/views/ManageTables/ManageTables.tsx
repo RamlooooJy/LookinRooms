@@ -1,16 +1,30 @@
-import React, {FC} from 'react';
+import React, {FC, SyntheticEvent, useState} from 'react';
 import {observer} from "mobx-react-lite";
 import {tablesStore} from "../../store/tables/tablesStore";
-import EditableInput from "../../components/EditableInput/EditableInput";
 import {Flex} from '../../Application/globalStyled';
 import {StyledManageTables} from "./styledManageTables";
 import Button from "../../components/Button/Button";
+import Input from "../../components/Input";
+import {TablePricesT} from "../../common/dataInterfaces";
 
 const ManageTables: FC = observer(() => {
   if (!tablesStore.tableInfo.Main) return <>Загрузка информации о столах</>
   const {Shater, Main, Vip} = tablesStore.tableInfo
+  const [changedTables, setChangedTables] = useState<TablePricesT[]>([])
   const onclickSave = () => {
-    tablesStore.setTablesPricesOnDate(tablesStore.tableInfo)
+    if(tablesStore.data.Date && !changedTables.length) {
+      return
+    }
+    tablesStore.setTablesPricesOnDate(changedTables)
+    setChangedTables([])
+  }
+  const onChange = (e: SyntheticEvent<HTMLInputElement>) => {
+    const value: TablePricesT = {
+      TableNumber: e.currentTarget.name.replace('table-', ''),
+      Price: Number.parseFloat(e.currentTarget.value)
+    }
+    const changedTablesWithoutCurrent = changedTables.filter(changedTable=>changedTable.TableNumber !== value.TableNumber)
+    setChangedTables([...changedTablesWithoutCurrent, value])
   }
   return <StyledManageTables>
     <i>* цены столов до редактирования указаны в средне-минимальной стоимости за все время</i>
@@ -18,9 +32,9 @@ const ManageTables: FC = observer(() => {
     <div>
       {
         Shater.map(table => {
-          return <Flex direction={"row"} align={"center"}>
+          return <Flex key={table.TableNumber} direction={"row"} align={"center"}>
             <span className='table-number'>{table.TableNumber}</span>
-            <EditableInput defaultValue={"" + table.TableInfo.Price}/>
+            <Input onChange={onChange} name={`table-${table.TableNumber}`} defaultValue={"" + table.TableInfo.Price}/>
           </Flex>
         })
       }
@@ -32,9 +46,9 @@ const ManageTables: FC = observer(() => {
     <div>
       {
         Main.map(table => {
-          return <Flex direction={"row"} align={"center"}>
+          return <Flex key={table.TableNumber} direction={"row"} align={"center"}>
             <span className='table-number'>{table.TableNumber}</span>
-            <EditableInput defaultValue={"" + table.TableInfo.Price}/>
+            <Input onChange={onChange} name={`table-${table.TableNumber}`} defaultValue={"" + table.TableInfo.Price}/>
           </Flex>
         })
       }
@@ -46,9 +60,9 @@ const ManageTables: FC = observer(() => {
     <div>
       {
         Vip.map(table => {
-          return <Flex direction={"row"} align={"center"}>
+          return <Flex key={table.TableNumber} direction={"row"} align={"center"}>
             <span className='table-number'>{table.TableNumber}</span>
-            <EditableInput defaultValue={"" + table.TableInfo.Price}/>
+            <Input onChange={onChange} name={`table-${table.TableNumber}`} defaultValue={"" + table.TableInfo.Price}/>
           </Flex>
         })
       }

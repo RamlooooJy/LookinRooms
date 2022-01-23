@@ -3,7 +3,14 @@ import {isEmptyObject} from "../../common/utils";
 import {getTables, GetTablesI} from "../../queries/getTables";
 import {getLockedTables} from "../../queries/getLockedTables";
 import {getReservedTables} from "../../queries/getReservedTables";
-import {LockedInfoT, ReservedInfoT, Rooms, TablesInfoResultApiT, TablesResultApiT} from "../../common/dataInterfaces";
+import {
+  LockedInfoT,
+  ReservedInfoT,
+  Rooms,
+  TablePricesT,
+  TablesInfoResultApiT,
+  TablesResultApiT
+} from "../../common/dataInterfaces";
 import {setLockedTable} from "../../queries/setLockedTable";
 import {setReservedTable} from "../../queries/setReservedTable";
 import {dateStore} from "../DateStore/DateStore";
@@ -98,7 +105,7 @@ class Tables implements TablesClassI {
     return true
   }
 
-  async setTablesPricesOnDate(data: TablesInfoResultApiT, date?: string) {
+  async setTablesPricesOnDate(data: TablePricesT[], date?: string) {
     const result = await setTablesPricesOnDateQuery (data, date || dateStore.date)
     if(result) {
       this.fetchTables()

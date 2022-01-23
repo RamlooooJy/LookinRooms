@@ -10,7 +10,7 @@ type TableReason = 'ДР' | 'КОРПОРАТ' | 'Просрать бабки и
 export type UserResultApiT = {
   Hash: string,
   Login: string,
-  Role: "ADMIN" | "AGENT" | "PROMO",
+  Role: "ADMIN" | "AGENT" ,
   RegistrationDate: string,
   Fio: string,
   Phone: string,
@@ -84,4 +84,11 @@ export type RoomItemT = {
   TableInfo: TableInfoT
   Locked: LockedInfoT | null
   Reserved: ReservedInfoT | null
+}
+// export type TablePricesT = {
+//   Price: Pick<TableInfoT, "Price">,
+//   TableNumber: Pick<RoomItemT, "TableNumber">,
+// }
+export interface TablePricesT extends Pick<RoomItemT, "TableNumber">, Pick<TableInfoT, "Price"> {
+
 }

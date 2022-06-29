@@ -3,12 +3,13 @@ import {StyledInput} from "./styled";
 import ErrorLine from "./ErrorLine";
 
 interface InputI extends InputHTMLAttributes<HTMLInputElement> {
+  isFocused?: boolean
   icon?: string
   field?: string
 }
 
-const Input: FC<InputI> = ({field, icon, placeholder, onSubmit, onChange, ...props}) => {
-  const [value, setValue] = useState('')
+const Input: FC<InputI> = ({isFocused, defaultValue, field, icon, placeholder, onSubmit, onChange, ...props}) => {
+  const [value, setValue] = useState(Boolean(defaultValue) ? defaultValue : '')
   const [isError, setIsError] = useState(false)
   const onChangeCallback = (ev: any) => {
     if(isError) setIsError(false) /** todo **/
@@ -21,7 +22,7 @@ const Input: FC<InputI> = ({field, icon, placeholder, onSubmit, onChange, ...pro
     }
   }
   return <StyledInput icon={icon} isError={isError}>
-    <input data-field={field} onKeyPress={onKeyPress} placeholder={placeholder} value={value} onChange={onChangeCallback} {...props}/>
+    <input autoFocus={isFocused} data-field={field} onKeyPress={onKeyPress} placeholder={placeholder} value={value} onChange={onChangeCallback} {...props}/>
     {isError && <ErrorLine>Поле {placeholder} не должно быть пустым!</ErrorLine>}
   </StyledInput>
 }

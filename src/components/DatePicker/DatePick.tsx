@@ -2,7 +2,7 @@ import React, {FC, forwardRef, useState} from "react";
 import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
 import {StyledDatePicker} from "./styled";
-import {dateStore} from "../../store/DateStore/DateStore";
+import {dateStore, todayDate} from "../../store/DateStore/DateStore";
 import {tablesStore} from "../../store/tables/tablesStore";
 
 const CutomDatePicker = forwardRef((props: any, ref: any) => (
@@ -15,11 +15,12 @@ const isWeekday = (date:any) => {
   return day >= 5;
 };
 const DatePick: FC = () => {
-  const [startDate, setStartDate] = useState<any>(new Date());
+  const [startDate, setStartDate] = useState<Date>(todayDate);
   const onChangeDate = (date: Date) => {
     setStartDate(date)
     dateStore.setDate(date)
-    tablesStore.fetchTables(date.toLocaleDateString())
+    tablesStore.fetchTables(true)
+    tablesStore.fetchTablesInfo()
   }
   return (<StyledDatePicker data-title='Date picker'>
     <DatePicker

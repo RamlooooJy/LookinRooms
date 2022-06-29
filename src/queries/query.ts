@@ -11,12 +11,28 @@ type QueryT<T> = {
 
 export const GetRequestApi = async <M>(request: string, data: any): Promise<QueryT<M>> => {
   let query:string = Object.keys(data).map(key=>`${key}=${data[key]}`).join('&')
-  console.log(query)
   const url = `${REQUEST_URL}${request}?${query}`
 
   let result = {query: 'error', result: []} as QueryT<M>
   try {
     result = await (await fetch(url)).json()
+  } catch (err) {
+    console.error('Error query, Something gone on server side!!!\n\n', err)
+  }
+  return result
+}
+
+export const PostRequestApi = async <M>(request: string, data: any): Promise<QueryT<M>> => {
+  let query:string = Object.keys(data).map(key=>`${key}=${data[key]}`).join('&')
+  const url = `${REQUEST_URL}${request}?${query}`
+
+  let result = {query: 'error', result: []} as QueryT<M>
+  try {
+    result = await (await fetch(url, {
+      method: "post",
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify(data)
+    })).json()
   } catch (err) {
     console.error('Error query, Something gone on server side!!!\n\n', err)
   }

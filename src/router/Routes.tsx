@@ -12,7 +12,7 @@ const Routes: FC = () => {
         <DefaultRoute key={item.path} dataKey={item.data} path={item.path} Component={item.component} isDefault={true}/>
       )
     }
-    <DefaultRoute path="*" Component={Error404} />
+    <DefaultRoute path="*" Component={Error404}/>
   </Switch>
 }
 export default Routes

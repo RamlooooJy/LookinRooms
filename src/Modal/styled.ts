@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {Flex} from "../../Application/globalStyled";
+import {Flex} from "../Application/globalStyled";
 
 export const StyledModal = styled.div<{isActive: boolean}>`
   position: absolute;
@@ -13,6 +13,15 @@ export const StyledModal = styled.div<{isActive: boolean}>`
   align-items: center;
   backdrop-filter: blur(5px);
   transition: ${props => props.theme.transitions.primary};
+  .info {
+    font-size: 2rem;
+    line-height: 2.1rem;
+    color: aliceblue;
+    p {
+      margin: 0;
+      padding: 6px;
+    }
+  }
   * {
     outline: none;
     text-decoration: none;
@@ -32,7 +41,11 @@ export const StyledModalContainer = styled.div`
   overflow: auto;
 `
 export const StyledInputsContainer = styled.div`
-  margin-top: 10vh;
+  .container {
+    div {
+      width: 49%;
+    }
+  }
 `
 
 export const StyledControlsContainer = styled(Flex)`

@@ -1,25 +1,26 @@
 import {makeAutoObservable} from 'mobx'
 
+const today = new Date()
+const nearestFridayOrToday = today.getDay() < 5 ? today.getDate() + (5 - today.getDay()) : today.getDate()
+export const todayDate = new Date(today.getFullYear(), today.getMonth(), nearestFridayOrToday)
+
+export const normilizeDate = (date: Date) => {
+  // время на текущий день считается до 6 утра в день мероприятия
+  // пятница считается с 00:00:00
+  // суббота считается с 06:00:00
+  return date.toLocaleDateString('ru')
+}
+
 class DateStore {
-  public date: string = new Date().toLocaleDateString()
+  public date: string = normilizeDate(todayDate)
 
   constructor() {
     makeAutoObservable(this)
   }
 
-  private normilizeDate(date: Date) {
-    // время на текущий день считается до 6 утра в день мероприятия
-    // пятница считается с 00:00:00
-    // суббота считается с 06:00:00
-    const normalized = new Date (new Date(date).getTime() - 21600000)
-    if(new Date(date).getDay() === 5) return new Date(date).toLocaleDateString()
-    return normalized.toLocaleDateString()
-  }
-
   public setDate(date: Date) {
-    this.date = this.normilizeDate(date)
+    this.date = normilizeDate(date)
   }
-
 }
 
 export const dateStore = new DateStore()

@@ -10,7 +10,7 @@ type TableReason = 'ДР' | 'КОРПОРАТ' | 'Просрать бабки и
 export type UserResultApiT = {
   Hash: string,
   Login: string,
-  Role: "ADMIN" | "AGENT" | "PROMO",
+  Role: "ADMIN" | "AGENT" ,
   RegistrationDate: string,
   Fio: string,
   Phone: string,
@@ -36,11 +36,10 @@ type TableInfoT = {
   TotalGuestWithAdditional: number
 }
 export type LockedInfoT = {
-  Agent: string
-  Date: string
+  Agent: ReservedInfoT["Agent"]
   Expired: string
+  Date: string
   Info: string
-  Phone: string
   TableNumber: string
 }
 export type ReservedInfoT = {
@@ -72,6 +71,11 @@ export type TablesResultApiT = {
   // todo ////// soon
   // Izvestia: any[]
 }
+export type TablesInfoResultApiT = {
+  Shater: Omit<RoomItemT, "Locked" | "Reserved">[]
+  Main: Omit<RoomItemT, "Locked" | "Reserved">[]
+  Vip: Omit<RoomItemT, "Locked" | "Reserved">[]
+}
 
 export type TablesLockedResultApiT = LockedInfoT
 export type TablesReservedApiT = ReservedInfoT
@@ -80,4 +84,11 @@ export type RoomItemT = {
   TableInfo: TableInfoT
   Locked: LockedInfoT | null
   Reserved: ReservedInfoT | null
+}
+// export type TablePricesT = {
+//   Price: Pick<TableInfoT, "Price">,
+//   TableNumber: Pick<RoomItemT, "TableNumber">,
+// }
+export interface TablePricesT extends Pick<RoomItemT, "TableNumber">, Pick<TableInfoT, "Price"> {
+
 }

@@ -5,6 +5,7 @@ import {observer} from "mobx-react-lite";
 import {tablesStore} from "../store/tables/tablesStore";
 import {ViewI} from "../common/interfaces";
 import {Rooms} from "../common/dataInterfaces";
+import ErrorMessageWithInfo from "../components/Errors/ErrorMessageWithInfo";
 
 interface DefaultRouteI {
   Component: LazyExoticComponent<FC<ViewI>> | FC,
@@ -15,14 +16,20 @@ interface DefaultRouteI {
 }
 
 const DefaultRoute: FC<DefaultRouteI> = observer(({dataKey= '', path, props, isDefault, Component}) => {
+  let component = <></>
   const store = tablesStore.getDataByView(dataKey)
-  console.log(store)
+
+  if(tablesStore.isTablesError) {
+    component = <ErrorMessageWithInfo/>
+  } else
+  if(tablesStore.isPending) {
+    component = <Spinner/>
+  } else {
+    component = <Component data={store} {...props} />
+  }
   return <Route path={path}>
     <Suspense fallback={<Spinner background={'transparent'}/>}>
-      {tablesStore.isPending
-        ? <Spinner/>
-        : <Component data={store} {...props} />
-      }
+      {component}
     </Suspense>
   </Route>
 })

@@ -1,9 +1,9 @@
 import React, {FC} from "react";
-import Logo from "../../components/Logo";
-import Navigation from "../../components/Navigation/Navigation";
-import DatePick from "../../components/DatePicker/DatePick";
+import Logo from "../Logo";
+import Navigation from "../Navigation/Navigation";
+import DatePick from "../DatePicker/DatePick";
 import {StyledControlsContainer, StyledSidebar} from "./styled";
-import AdminBar from "../../components/AdminBar/AdminBar";
+import AdminBar from "../AdminBar/AdminBar";
 import {Flex} from "../../Application/globalStyled";
 import {dimensions} from "../../store/dimension/dimensions";
 import {observer} from "mobx-react-lite";

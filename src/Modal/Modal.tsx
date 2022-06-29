@@ -1,8 +1,8 @@
 import React, {FC} from 'react';
 import {createPortal} from "react-dom";
 import {StyledModal, StyledModalContainer} from './styled';
-import Logo from "../../components/Logo";
-import {RoomItemT} from "../../common/dataInterfaces";
+import Logo from "../components/Logo";
+import {RoomItemT} from "../common/dataInterfaces";
 
 export interface ModalI {
   data: RoomItemT
